@@ -1,0 +1,59 @@
+Voy a definir todos los modelos que voy a usar en la base de datos
+
+por el momento es esto: 
+Diseño de bases de datos
+
+atajos: NOTNULL (NN), AUTOINCREMENT (AI), PRIMARYKEY (PK), FOREIGNKEY (FK), UNIQUE (U)
+
+BD Usuario: 
+    • user
+        ◦ user_id: NN, AI, PK
+        ◦ user_name: NN, varchar(100)
+        ◦ email: NN, varchar(100), U
+        ◦ number_phone: varchar(20), U
+        ◦ password: varchar(255), NN (hash en Django, no guardar texto plano)
+          
+    • roles: 
+        ◦ rol_id: NN, AI, PK
+        ◦ rol_name: NN, varchar(100)
+        ◦ description: varchar(255)
+
+    • user_rol (relación usuario–rol–tienda): 
+        ◦ user_rol_id: INT, (FK → user(user_id))
+        ◦ rol_idfk: INT,  (FK → rol(rol_id))
+        ◦ id_tienda_fk: INT,  (FK → tienda(id_tienda))
+      
+    • Tienda:
+        ◦ id_tienda: NN, AI, PK
+        ◦ tienda_name: NN, varchar(100), U
+        ◦ description: varchar(255), NN
+        ◦ id_propietario: INT, NN (FK → user(user_id))
+      
+    • Categoría
+        ◦ id_categoria: NN, AI, PK
+        ◦ categoria_name: NN, varchar(100), U
+        ◦ description: varchar(255)
+        ◦ id_tienda_fk: INT, NN (FK → tienda(id_tienda))
+      
+    • Producto
+        ◦ product_id: NN, AI, PK
+        ◦ product_name: NN, varchar(100), U
+        ◦ product_image: NN, varchar(100)
+        ◦ stock: NN, INT UNSIGNED
+        ◦ product_price: DECIMAL(10,2), NN
+        ◦ id_categoria: INT, NN (FK → categoria(id_categoria))
+        ◦ id_tienda_fk: INT, NN (FK → tienda(id_tienda))
+      
+    • Pedido:
+        ◦ pedido_id: NN, AI, PK
+        ◦ user_id: INT, NN (FK → user(user_id)) (cliente que hace el pedido)
+        ◦ id_tienda_fk: INT, NN (FK → tienda(id_tienda)) (tienda en la que compra)
+        ◦ fecha: DATETIME, NN
+        ◦ total: DECIMAL(10,2), NN
+
+    • pedido_detalle: 
+        ◦ detalle_pedido_id: NN, AI, PK
+        ◦ pedido_id: INT, NN (FK → pedido(pedido_id))
+        ◦ product_id: INT, NN (FK → producto(product_id))
+        ◦ cantidad: INT, NN
+        ◦ precio_unitario: DECIMAL(10,2), NN
