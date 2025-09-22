@@ -11,12 +11,18 @@ const Producto = require("./Producto");
 const Pedido = require("./Pedido");
 const PedidoDetalle = require("./PedidoDetalle");
 const UserRol = require("./UserRol");
+const sequelize = require("../config/database"); 
 
-//  Relaciones Usuario ↔ Tienda
+
+/**
+  Relaciones
+ */
+
+//  Usuario ↔ Tienda
 User.hasMany(Tienda, { foreignKey: "id_propietario" });
 Tienda.belongsTo(User, { foreignKey: "id_propietario" });
 
-//  Relaciones Usuario ↔ Rol ↔ Tienda (tabla intermedia)
+//   Usuario ↔ Rol ↔ Tienda (tabla intermedia)
 User.belongsToMany(Rol, { through: UserRol, foreignKey: "user_id" });
 Rol.belongsToMany(User, { through: UserRol, foreignKey: "rol_idfk" });
 Tienda.belongsToMany(User, { through: UserRol, foreignKey: "id_tienda_fk" });
@@ -58,4 +64,5 @@ module.exports = {
   Pedido,
   PedidoDetalle,
   UserRol,
+  sequelize,
 };
