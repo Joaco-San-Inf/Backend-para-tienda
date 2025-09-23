@@ -1,12 +1,12 @@
 /*
     Aca voy a iniciar el servidor para probar la API
 */
-require("dotenv").config(); // para leer las variables de entorno desde el archivo .env
+require("dotenv").config(); // para leer las variables de entorno desde el archivo variableGlobal
 
 const express = require("express");
 const app = express();
-const db = require("./models");
-const routes = require("./routes");
+const db = require("./models"); 
+const routes = require("./routes"); //rutas de los endpoint
 
 app.use(express.json()); //para poder leer json
 
@@ -17,12 +17,11 @@ db.sequelize.sync({ force: false }).then(() => {
 }); // force: true  -> cada vez que se inicie el servidor, borra y crea las tablas
 
 
-
-app.use("/api", routes);
-
+app.use("/", routes);
 
 
-const PORT = process.env.PORT;
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT} 🚀`);
 });
