@@ -2,6 +2,8 @@
     Aca voy a iniciar el servidor para probar la API
 */
 require("dotenv").config(); // para leer las variables de entorno desde el archivo variableGlobal
+console.log("USUARIO:", process.env.DB_USER); // debug
+
 
 const express = require("express");
 const app = express();
@@ -13,7 +15,10 @@ app.use(express.json()); //para poder leer json
 
 // conexion a la db y creacion de tablas 
 db.sequelize.sync({ force: false }).then(() => {
+  
+  console.log("Bases de datos conectada")
   console.log("✅ Tablas listas");
+
 }); // force: true  -> cada vez que se inicie el servidor, borra y crea las tablas
 
 

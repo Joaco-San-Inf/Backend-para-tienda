@@ -1,13 +1,24 @@
 /*
-voy a probar el endpoint de usuarios a ver que tul
+endpoint de usuarios
 */
 
 const express = require("express");
 const router = express.Router();
-//const User = require("../models/User"); 
+const userController = require("../controllers/userController"); 
 
-router.get("/", async (req, res) =>{
-    res.send("Endpoint de usuarios funciona")
-})
 
+// Crear usuario
+router.post("/post", userController.createUser);
+
+// Obtener todos los usuarios
+router.get("/get" , userController.getUsers);
+
+// Obtener usuario por ID
+router.get("/get/:id", userController.getUserById);
+
+// Actualizar usuario
+router.put("/put/:id", userController.updateUser);
+
+// Eliminar usuario
+router.delete("/delete/:id", userController.deleteUser);
 module.exports = router;
