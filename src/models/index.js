@@ -2,16 +2,19 @@
 Voy a hacer un ORM para manejar un toque todos los modelos por que si no es un quilombo 
 Totalmente hecho con ia por que aguante el vibecoding 
 */
-
-const User = require("./User");
-const Rol = require("./Rol");
-const Tienda = require("./Tienda");
-const Categoria = require("./Categoria");
-const Producto = require("./Producto");
-const Pedido = require("./Pedido");
-const PedidoDetalle = require("./PedidoDetalle");
-const UserRol = require("./UserRol");
 const sequelize = require("../config/database"); 
+const {DataTypes} = require("sequelize"); 
+
+const Banner = require("./Banner")(sequelize, DataTypes);
+const User = require("./User")(sequelize, DataTypes);
+const Rol = require("./Rol")(sequelize, DataTypes);
+const Tienda = require("./Tienda")(sequelize, DataTypes);
+const Categoria = require("./Categoria")(sequelize, DataTypes);
+const Producto = require("./Producto")(sequelize, DataTypes);
+const Pedido = require("./Pedido")(sequelize, DataTypes);
+const PedidoDetalle = require("./PedidoDetalle")(sequelize, DataTypes);
+const UserRol = require("./UserRol")(sequelize, DataTypes);
+const sequelize = require("../config/database")(sequelize, DataTypes); 
 
 
 /**
@@ -63,6 +66,6 @@ module.exports = {
   Producto,
   Pedido,
   PedidoDetalle,
-  UserRol,
+  UserRol, 
   sequelize,
 };

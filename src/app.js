@@ -7,10 +7,13 @@ console.log("USUARIO:", process.env.DB_USER); // debug
 
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const db = require("./models"); 
 const routes = require("./routes"); //rutas de los endpoint
 
+app.use(cors()); // habilitar CORS para todas las rutas
 app.use(express.json()); //para poder leer json
+app.use('/uploads', express.static('uploads')); // servir archivos estaticos desde la carpeta uploads
 
 
 // conexion a la db y creacion de tablas 

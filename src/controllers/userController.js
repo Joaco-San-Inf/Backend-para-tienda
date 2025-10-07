@@ -138,3 +138,44 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ error: "Error al eliminar usuario" });
   }
 };
+
+/**
+ * Loguear un usuario.
+ * @param {Object} req - Objeto de la petición HTTP.
+ * @param {Object} res - Objeto de la respuesta HTTP.
+ * @returns {JSON} Mensaje de éxito y el usuario logueado o error correspondiente.
+ */
+
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Faltan campos obligatorios" });
+    }
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Contraseña incorrecta" });
+    }
+
+    const userResponse = {
+      user_id: user.user_id,
+      user_name: user.user_name,
+      email: user.email,
+      number_phone: user.number_phone,
+    };
+
+    res.status(200).json({ message: "Login exitoso", user: userResponse });
+  } catch (error) {
+    console.error("Error en loginUser:", error);
+    res.status(500).json({ error: "Error al loguear usuario" });
+  }
+};
