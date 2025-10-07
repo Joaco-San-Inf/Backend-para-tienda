@@ -14,7 +14,7 @@
  *
  */
 
-const User = require("../models/User");
+const { User } = require("../models");
 const bcrypt = require("bcrypt"); // libreria que define funciones para hashear contraseñas
 const salto = 10; // numero de rondas de salting para bcrypt
 
@@ -29,6 +29,7 @@ const salto = 10; // numero de rondas de salting para bcrypt
 
 
 exports.createUser = async (req, res) => {
+  console.log('Request Body:', req.body); // Línea de depuración
   try {
     const { user_name, email, number_phone, password , } = req.body;
 

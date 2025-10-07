@@ -4,7 +4,7 @@
  * Implementa CRUD para la tabla "productos".
  */
 
-const Producto = require("../models/Producto");
+const { Producto } = require("../models");
 const validarCamposProducto = require("../helpers/validarcamposProducto");
 /**
  * Crear un nuevo producto en la base de datos.

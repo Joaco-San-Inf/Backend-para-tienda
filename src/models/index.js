@@ -14,7 +14,6 @@ const Producto = require("./Producto")(sequelize, DataTypes);
 const Pedido = require("./Pedido")(sequelize, DataTypes);
 const PedidoDetalle = require("./PedidoDetalle")(sequelize, DataTypes);
 const UserRol = require("./UserRol")(sequelize, DataTypes);
-const sequelize = require("../config/database")(sequelize, DataTypes); 
 
 
 /**
@@ -68,4 +67,5 @@ module.exports = {
   PedidoDetalle,
   UserRol, 
   sequelize,
+  Sequelize: require('sequelize'),
 };

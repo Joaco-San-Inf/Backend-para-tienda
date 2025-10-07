@@ -1,4 +1,4 @@
-const Tienda = require("../models/Tienda");
+const { Tienda } = require("../models");
 
 /**
  * Crear una nueva tienda.

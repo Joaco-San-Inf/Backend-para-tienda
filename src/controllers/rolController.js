@@ -2,7 +2,7 @@
   
 */
 
-const Rol = require("../models/Rol");
+const { Rol } = require("../models");
 
 
 //Obtener todos los roles 
