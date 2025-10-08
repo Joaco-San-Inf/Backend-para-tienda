@@ -13,8 +13,8 @@ router.get("/api", (req, res) => {
     res.send("La API anda wacho .....")
 })
 
-router.use("/api/user", usuario);
-router.use("/api/producto", productos);
+router.use("/api/users", usuario);
+router.use("/api/productos", productos);
 router.use("/api/categorias", categorias);
 router.use("/api/tiendas", tiendas);
 
