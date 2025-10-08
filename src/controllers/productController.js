@@ -8,6 +8,16 @@ const { Producto } = require("../models");
 const validarCamposProducto = require("../helpers/validarcamposProducto");
 /**
  * Crear un nuevo producto en la base de datos.
+ * al crear todos los usuarios, si o si deben estar completos todos estos campos:
+ * nombre del producto
+ * imagen
+ * stock
+ * precio del producto
+ * id de la categoria
+ * id de la tienda a la que pertenece
+ * @param {Object} req - Objeto de la petición HTTP.
+ * @param {Object} res - Objeto de la respuesta HTTP.
+ * @returns {JSON} Mensaje de éxito y el producto creado o error correspondiente.
  */
 exports.createProducto = async (req, res) => {
   try {
